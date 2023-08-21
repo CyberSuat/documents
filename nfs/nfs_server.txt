@@ -1,0 +1,69 @@
+# NFS Server İnstall
+sudo apt update
+sudo apt install nfs-kernel-server
+sudo systemctl status nfs-kernel server
+# Created shared file tıo Client-İp
+-- sudo mkdir /exports
+-- cd /exports
+-- mkdir shared-files
+sudo vim etc/exports
+-- exports/ shared-files {Client-IP}(rw, sync,no_subtree_check)
+--:wq
+# NFS Server Restart
+sudo systemctl restart nfs-kernel-server
+sudo systemctl status nfs-kernel-server
+# Client Server İnstall
+# 1- Persistent mount
+sudo apt update
+sudo apt install nfs-common -y
+sudo systemctl status nfs-common
+sudo mkdir /mnt/nfs/shared-files
+sudo mount {Nfs-Server-İp}:/exports/shared-files /mnt/nfs/shared-files
+#sudo umount /mnt/nfs/shared-files
+
+# 2-  Auto mount
+
+sudo apt update
+sudo apt install nfs-common  autofs -y
+sudo systemctl status autofs
+sudo vim /etc/auto.master
+-- /mnt/nfs  /etc/auto.nfs --ghost –timeout=60
+--:wq
+sudo vim etc/auto/nfs
+-- shared-files -fsytpe=nfs4,rw {Nfs-Server-İp}:/exports/shared-files
+-- :wq
+sudo systemctl restart autofs# NFS Server İnstall
+sudo apt update
+sudo apt install nfs-kernel-server
+sudo systemctl status nfs-kernel server
+# Created shared file tıo Client-İp
+-- sudo mkdir /exports
+-- cd /exports
+-- mkdir shared-files
+sudo vim etc/exports
+-- exports/ shared-files {Client-IP}(rw, sync,no_subtree_check)
+--:wq
+# NFS Server Restart
+sudo systemctl restart nfs-kernel-server
+sudo systemctl status nfs-kernel-server
+# Client Server İnstall
+# 1- Persistent mount
+sudo apt update
+sudo apt install nfs-common -y
+sudo systemctl status nfs-common
+sudo mkdir /mnt/nfs/shared-files
+sudo mount {Nfs-Server-İp}:/exports/shared-files /mnt/nfs/shared-files
+#sudo umount /mnt/nfs/shared-files
+
+# 2-  Auto mount
+
+sudo apt update
+sudo apt install nfs-common  autofs -y
+sudo systemctl status autofs
+sudo vim /etc/auto.master
+-- /mnt/nfs  /etc/auto.nfs --ghost –timeout=60
+--:wq
+sudo vim etc/auto/nfs
+-- shared-files -fsytpe=nfs4,rw {Nfs-Server-İp}:/exports/shared-files
+-- :wq
+sudo systemctl restart autofs
