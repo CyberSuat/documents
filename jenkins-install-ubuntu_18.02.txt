@@ -1,0 +1,29 @@
+---> Open a terminal window first, then execute the following command to update the system package repository
+sudo apt update
+---> Check the java version
+java -version
+---> Run one of the following instructions depending on whether Java 8 or 11 is the version you wish to instal:
+# sudo apt install openjdk-8-jdk -y 
+or
+# sudo apt install openjdk-11-jdk -y
+---> Check the git version
+git --version
+---> İf the git  doesn't exist, install git
+sudo apt install git -y
+---> By importing and applying the GPG keys to the system, Jenkins may be quickly deployed on Ubuntu.
+wget -p -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+---> After adding GPG keys, use the following command to add the Jenkins package URL to the sources list
+sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+---> The system's APT cache only has to be updated once when the Jenkins repository has been enabled
+sudo apt update
+---> Let's proceed and instal Jenkins in its entirety
+sudo apt install jenkins -y 
+---> Check the status of the Jenkins service.
+sudo systemctl status jenkins
+---> Enable Jenkins service so that Jenkins service can restart automatically after reboots
+sudo systemctl enable jenkins
+---> Check if the Jenkins service is up and running
+sudo systemctl status jenkins
+---> Get the initial administrative password
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+# Open your browser, get your ec2 instance Public IPv4 DNS and paste it at address bar with 8080. "http://[ec2-public-dns-name]:8080
