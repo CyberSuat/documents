@@ -8,12 +8,12 @@ or
 # sudo apt install openjdk-11-jdk -y
 ---> Check the git version
 git --version
----> İf the git  doesn't exist, install git
+---> İf thgit --versione git  doesn't exist, install git
 sudo apt install git -y
 ---> By importing and applying the GPG keys to the system, Jenkins may be quickly deployed on Ubuntu.
 wget -p -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 ---> After adding GPG keys, use the following command to add the Jenkins package URL to the sources list
-sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 ---> The system's APT cache only has to be updated once when the Jenkins repository has been enabled
 sudo apt update
 ---> Let's proceed and instal Jenkins in its entirety
